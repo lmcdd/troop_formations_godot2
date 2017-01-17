@@ -18,11 +18,7 @@ func wedge(units):
 	var co = []  
 	for unit in units:
 		for k in range(i + 1):
-			var f
-			if i == 0:
-				f = Vector2(0, i * distance)
-			else:
-				f = Vector2(((-0.5 * i) + k) * distance, i * distance) 
+			var f = Vector2(((-0.5 * i) + k) * distance, i * distance) 
 			co.append(f)
 		i += 1
 	return [co,0]
@@ -70,7 +66,7 @@ var units = []
 
 func _ready():
 	for child in get_children():
-		if child.get_name().match('Sprite*') == true:
+		if child.get_name().match('Unit*') == true:
 			units.append(child)
 
 
