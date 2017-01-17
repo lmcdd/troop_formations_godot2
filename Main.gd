@@ -20,9 +20,9 @@ func wedge(units):
 		for k in range(i + 1):
 			var f
 			if i == 0:
-				f = Vector2(0, (i + 1) * distance)
+				f = Vector2(0, i * distance)
 			else:
-				f = Vector2(((-0.5 * i) + k)*distance, (i + 1) * distance) 
+				f = Vector2(((-0.5 * i) + k) * distance, i * distance) 
 			co.append(f)
 		i += 1
 	return [co,0]
