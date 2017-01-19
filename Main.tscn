@@ -20,10 +20,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 27.0
-margin/bottom = 20.0
+margin/left = 3.0
+margin/top = 1.0
+margin/right = 30.0
+margin/bottom = 21.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -36,10 +36,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 44.0
-margin/right = 27.0
-margin/bottom = 64.0
+margin/left = 3.0
+margin/top = 43.0
+margin/right = 30.0
+margin/bottom = 63.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -52,14 +52,30 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
+margin/left = 3.0
 margin/top = 22.0
-margin/right = 27.0
+margin/right = 30.0
 margin/bottom = 42.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "<|"
+flat = false
+
+[node name="carre" type="Button" parent="CanvasLayer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 3.0
+margin/top = 64.0
+margin/right = 30.0
+margin/bottom = 84.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "O"
 flat = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -90,217 +106,197 @@ texture = ExtResource( 2 )
 
 [node name="Unit2" type="Sprite" parent="."]
 
-transform/pos = Vector2( 680.587, 360.269 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit3" type="Sprite" parent="."]
 
-transform/pos = Vector2( 705.58, 276.202 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit4" type="Sprite" parent="."]
 
-transform/pos = Vector2( 703.308, 171.687 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit5" type="Sprite" parent="."]
 
-transform/pos = Vector2( 716.94, 76.2598 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit6" type="Sprite" parent="."]
 
-transform/pos = Vector2( 123.929, 462.512 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit7" type="Sprite" parent="."]
 
-transform/pos = Vector2( 214.812, 464.784 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit8" type="Sprite" parent="."]
 
-transform/pos = Vector2( 314.784, 467.056 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit9" type="Sprite" parent="."]
 
-transform/pos = Vector2( 421.571, 464.784 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit10" type="Sprite" parent="."]
 
-transform/pos = Vector2( 519.27, 451.152 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit11" type="Sprite" parent="."]
 
-transform/pos = Vector2( 585.16, 396.622 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit12" type="Sprite" parent="."]
 
-transform/pos = Vector2( 601.065, 303.467 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit13" type="Sprite" parent="."]
 
-transform/pos = Vector2( 628.33, 226.217 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit14" type="Sprite" parent="."]
 
-transform/pos = Vector2( 628.33, 62.6274 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit15" type="Sprite" parent="."]
 
-transform/pos = Vector2( 467.012, 392.078 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit16" type="Sprite" parent="."]
 
-transform/pos = Vector2( 616.969, 137.606 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit17" type="Sprite" parent="."]
 
-transform/pos = Vector2( 539.719, 80.8039 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit18" type="Sprite" parent="."]
 
-transform/pos = Vector2( 105.753, 380.718 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit19" type="Sprite" parent="."]
 
-transform/pos = Vector2( 189.819, 380.718 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit20" type="Sprite" parent="."]
 
-transform/pos = Vector2( 269.342, 389.806 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit21" type="Sprite" parent="."]
 
-transform/pos = Vector2( 378.402, 401.166 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit22" type="Sprite" parent="."]
 
-transform/pos = Vector2( 519.27, 319.372 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit23" type="Sprite" parent="."]
 
-transform/pos = Vector2( 544.263, 221.672 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit24" type="Sprite" parent="."]
 
-transform/pos = Vector2( 417.027, 312.555 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit25" type="Sprite" parent="."]
 
-transform/pos = Vector2( 453.38, 92.1643 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit26" type="Sprite" parent="."]
 
-transform/pos = Vector2( 305.695, 248.937 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit27" type="Sprite" parent="."]
 
-transform/pos = Vector2( 337.504, 337.548 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit28" type="Sprite" parent="."]
 
-transform/pos = Vector2( 457.924, 242.121 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit29" type="Sprite" parent="."]
 
-transform/pos = Vector2( 310.239, 139.878 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit30" type="Sprite" parent="."]
 
-transform/pos = Vector2( 389.762, 230.761 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit31" type="Sprite" parent="."]
 
-transform/pos = Vector2( 369.313, 48.9949 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit32" type="Sprite" parent="."]
 
-transform/pos = Vector2( 385.218, 144.422 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit33" type="Sprite" parent="."]
 
-transform/pos = Vector2( 478.373, 164.871 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit34" type="Sprite" parent="."]
 
-transform/pos = Vector2( 92.2158, 280.186 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit35" type="Sprite" parent="."]
 
-transform/pos = Vector2( 183.128, 299.907 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit36" type="Sprite" parent="."]
 
-transform/pos = Vector2( 251.128, 305.907 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit37" type="Sprite" parent="."]
 
-transform/pos = Vector2( 227.407, 225.355 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit38" type="Sprite" parent="."]
 
-transform/pos = Vector2( 79.1275, 182.907 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit39" type="Sprite" parent="."]
 
-transform/pos = Vector2( 183.128, 125.907 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [node name="Unit40" type="Sprite" parent="."]
 
-transform/pos = Vector2( 150.128, 203.458 )
-texture = ExtResource( 2 )
-
-[node name="Unit41" type="Sprite" parent="."]
-
-transform/pos = Vector2( 161.128, 58.9066 )
-texture = ExtResource( 2 )
-
-[node name="Unit42" type="Sprite" parent="."]
-
-transform/pos = Vector2( 257.128, 68.9066 )
-texture = ExtResource( 2 )
-
-[node name="Unit43" type="Sprite" parent="."]
-
-transform/pos = Vector2( 109.128, 112.907 )
-texture = ExtResource( 2 )
-
-[node name="Unit44" type="Sprite" parent="."]
-
-transform/pos = Vector2( 241.128, 127.907 )
+transform/pos = Vector2( 646.506, 462.512 )
 texture = ExtResource( 2 )
 
 [connection signal="pressed" from="CanvasLayer/phalanx" to="." method="_on_phalanx_pressed"]
@@ -308,5 +304,7 @@ texture = ExtResource( 2 )
 [connection signal="pressed" from="CanvasLayer/box" to="." method="_on_box_pressed"]
 
 [connection signal="pressed" from="CanvasLayer/wedge" to="." method="_on_wedge_pressed"]
+
+[connection signal="pressed" from="CanvasLayer/carre" to="." method="_on_carre_pressed"]
 
 
