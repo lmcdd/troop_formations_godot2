@@ -91,15 +91,13 @@ func PlaceUnits(units, form = 'phalanx', result=null):
 			matrix_pos = co[ uf[pos].x ][ uf[pos].y ]  
 		else:
 			matrix_pos = co[pos]
-	#var global_pos = camera.get_global_mouse_pos() 
-		unit.set_pos(start_pos + matrix_pos) #+ global_pos) #mp.rotated(angle)
+		unit.set_pos(start_pos + matrix_pos) 
 		pos += 1
 
 func _ready():
 	for child in get_children():
 		if child.get_name().match('Unit*') == true:
 			units.append(child)
-	#set_process_input(true)
 	set_process(true)
 
 func _on_phalanx_pressed():
@@ -115,7 +113,7 @@ func _on_carre_pressed():
 	PlaceUnits(units,'carre')
 
 func _process(delta):
-	if panel.get_pos().x + panel.get_size().x < get_global_mouse_pos().x:
+	if panel.get_pos().x + panel.get_size().x < get_viewport().get_mouse_pos().x:
 		if Input.is_action_just_pressed('target'):
 			start_pos = get_global_mouse_pos()
 		if Input.is_action_pressed('target'):
@@ -147,8 +145,3 @@ func _draw():
 			matrix_pos = co[uf[pos].x][uf[pos].y]  
 			draw_rect(Rect2(start_pos + matrix_pos, Vector2(20,20)), Color(0,1,0)) 
 			pos += 1
-	
-#func _input(event):
-#	if event.type == InputEvent.MOUSE_BUTTON:
-#		if event.button_index == BUTTON_LEFT and event.pressed:
-#			print('1')
