@@ -1,9 +1,12 @@
 extends Node2D
-var distance = 70
+const SP_SIZE = 64
+const UNIT_DISTANCE = 10
+const PSEVDOFORM_UNIT_SIZE = Vector2(20, 20)
+const PSEVDOFORM_COLOR = Color(0,1,0)
+
 var units = []
 var start_pos = Vector2()
 var end_pos
-const SP_SIZE = 64
 var d 
 var psevdoform
 onready var panel = get_node("CanvasLayer/Panel")
@@ -11,10 +14,13 @@ onready var panel = get_node("CanvasLayer/Panel")
 func square(units, m, n):
 	var co = []
 	var uf = []
-	for x in range(0, m): 
+	for x in range(0, abs(m)): 
 		var tmp = []
-		for y in range(0, n):
-			tmp.append(Vector2(distance * x, distance * y))
+		for y in range(0, abs(n)):
+			if m < 0:
+				tmp.append(Vector2((UNIT_DISTANCE + SP_SIZE) * -x, (UNIT_DISTANCE + SP_SIZE) * y))
+			else:
+				tmp.append(Vector2((UNIT_DISTANCE + SP_SIZE) * x, (UNIT_DISTANCE + SP_SIZE) * y))
 			uf.append(Vector2(x,y))
 		co.append(tmp)
 	return [co, uf]
@@ -43,7 +49,7 @@ func wedge(units):
 	var co = []  
 	for unit in units:
 		for k in range(i + 1):
-			var f = Vector2(((-0.5 * i) + k) * distance, i * distance) 
+			var f = Vector2(((-0.5 * i) + k) * (UNIT_DISTANCE + SP_SIZE), i * (UNIT_DISTANCE + SP_SIZE)) 
 			co.append(f)
 		i += 1
 	return [co,0]
@@ -64,7 +70,7 @@ func carre(units):
 		for y in range(0, y_max):
 			if (not(x in [0, 1, x_max - 2, x_max - 1] and (y == 0 or y == y_max - 1)) 
 			and not(x >= 2 and x <= x_max - 3 and y <= y_max - 3 and y >= 2)):
-				co.append(Vector2(distance * x, distance * y))
+				co.append(Vector2((UNIT_DISTANCE + SP_SIZE) * x, (UNIT_DISTANCE + SP_SIZE) * y))
 	return [co, 0]
 	
 ##############################################
@@ -88,17 +94,71 @@ func PlaceUnits(units, form = 'phalanx', result=null):
 	for unit in units:
 		var matrix_pos
 		if form in ['phalanx', 'box']:
-			matrix_pos = co[ uf[pos].x ][ uf[pos].y ]  
+			matrix_pos = co[uf[pos].x][uf[pos].y]  
 		else:
 			matrix_pos = co[pos]
 		unit.set_pos(start_pos + matrix_pos) 
 		pos += 1
 
+
+func gen_units(n, tex):
+	var units = []
+	for i in range(n):
+		var sp = Sprite.new()
+		sp.set_name('Unit' + str(i + 1))
+		sp.set_texture(tex)
+		add_child(sp)
+		units.append(sp)
+	return units
+
+func psevdoform_controller():
+	if panel.get_pos().x + panel.get_size().x < get_viewport().get_mouse_pos().x:
+		if Input.is_action_just_pressed('target'):
+			start_pos = get_global_mouse_pos()
+		if Input.is_action_pressed('target'):
+			end_pos = get_global_mouse_pos()
+			d = end_pos.x - start_pos.x
+			var k = int( d / (SP_SIZE + UNIT_DISTANCE) )
+			if k != 0:
+				var t = abs(units.size() / k)
+				if units.size() % k != 0:
+					t = int(t) + 1
+				psevdoform = square(units, k, t)
+				update()
+	
+		if Input.is_action_just_released('target'):
+			PlaceUnits(units,'phalanx', psevdoform)
+			d = null
+			psevdoform = null
+			update()
+			
+	if panel.get_pos().x + panel.get_size().x >= get_viewport().get_mouse_pos().x:
+		d = null
+		psevdoform = null
+		update()
+
+func psevdoform_draw():
+	var co = []
+	var uf = []
+	if psevdoform != null:
+		var co = psevdoform[0]
+		var uf = psevdoform[1]
+		var pos = 0
+		for unit in units:
+			var matrix_pos
+			matrix_pos = co[uf[pos].x][uf[pos].y]  
+			draw_rect(Rect2(start_pos + matrix_pos, PSEVDOFORM_UNIT_SIZE), PSEVDOFORM_COLOR) 
+			pos += 1
+
 func _ready():
-	for child in get_children():
-		if child.get_name().match('Unit*') == true:
-			units.append(child)
+	units = gen_units(40, load('unit.png'))
 	set_process(true)
+
+func _process(delta):
+	psevdoform_controller()
+		
+func _draw():
+	psevdoform_draw()
 
 func _on_phalanx_pressed():
 	PlaceUnits(units,'phalanx')
@@ -111,37 +171,3 @@ func _on_wedge_pressed():
 
 func _on_carre_pressed():
 	PlaceUnits(units,'carre')
-
-func _process(delta):
-	if panel.get_pos().x + panel.get_size().x < get_viewport().get_mouse_pos().x:
-		if Input.is_action_just_pressed('target'):
-			start_pos = get_global_mouse_pos()
-		if Input.is_action_pressed('target'):
-			end_pos = get_global_mouse_pos()
-			d = Vector2(start_pos.x, 0).distance_to(Vector2(end_pos.x,0))
-			var k = int(d / (SP_SIZE + 10))
-			if k != 0:
-				var t = units.size() / k
-				if units.size() % k != 0:
-					t = int(t) + 1
-				psevdoform = square(units, k, t)
-				update()
-					
-		if Input.is_action_just_released('target'):
-			PlaceUnits(units,'phalanx', psevdoform)
-			d = null
-			psevdoform = null
-			update()
-
-func _draw():
-	var co = []
-	var uf = []
-	if psevdoform != null:
-		var co = psevdoform[0]
-		var uf = psevdoform[1]
-		var pos = 0
-		for unit in units:
-			var matrix_pos
-			matrix_pos = co[uf[pos].x][uf[pos].y]  
-			draw_rect(Rect2(start_pos + matrix_pos, Vector2(20,20)), Color(0,1,0)) 
-			pos += 1
