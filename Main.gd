@@ -99,14 +99,20 @@ func PlaceUnits(units, form = 'phalanx', result=null):
 	var uf = result[1]
 		
 	var pos = 0
-
+	var angle = null
 	for unit in units:
 		var matrix_pos
 		if form in ['phalanx', 'box']:
 			matrix_pos = co[uf[pos].x][uf[pos].y]  
 		else:
 			matrix_pos = co[pos]
-		unit.set_pos(start_pos + matrix_pos) 
+			
+		if angle == null:
+			if type_form == 'phalanx':
+				angle = 0
+			else:
+				angle = unit.get_pos().angle_to_point(get_global_mouse_pos()) 			
+		unit.set_pos(start_pos + (matrix_pos).rotated(angle)) 
 		pos += 1
 
 func gen_units(n, tex):
@@ -160,13 +166,19 @@ func psevdoform_draw():
 		var co = psevdoform[0]
 		var uf = psevdoform[1]
 		var pos = 0
+		var angle = null
 		for unit in units:
 			var matrix_pos
 			if type_form in ['phalanx', 'box']:
 				matrix_pos = co[uf[pos].x][uf[pos].y]  
 			else:
 				matrix_pos = co[pos] 
-			draw_rect(Rect2(start_pos + matrix_pos, PSEVDOFORM_UNIT_SIZE), PSEVDOFORM_COLOR) 
+			if angle == null:
+				if type_form == 'phalanx':
+					angle = 0
+				else:
+					angle = unit.get_pos().angle_to_point(get_global_mouse_pos()) 
+			draw_rect(Rect2(start_pos + (matrix_pos).rotated(angle), PSEVDOFORM_UNIT_SIZE), PSEVDOFORM_COLOR) 
 			pos += 1
 
 func _ready():
