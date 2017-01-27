@@ -12,6 +12,7 @@ var d
 var psevdoform
 var type_form = 'phalanx'
 onready var panel = get_node("CanvasLayer/Panel")
+var targets = {}
 
 func square(units, m, n):
 	var co = []
@@ -83,6 +84,7 @@ func carre(units):
 	return [co, 0]
 	
 ##############################################
+
 	
 func PlaceUnits(units, form = 'phalanx', result=null):
 	if result == null:
@@ -97,23 +99,26 @@ func PlaceUnits(units, form = 'phalanx', result=null):
 
 	var co = result[0]
 	var uf = result[1]
-		
-	var pos = 0
+
+	var k = 0
 	var angle = null
 	for unit in units:
 		var matrix_pos
 		if form in ['phalanx', 'box']:
-			matrix_pos = co[uf[pos].x][uf[pos].y]  
+			matrix_pos = co[uf[k].x][uf[k].y]  
 		else:
-			matrix_pos = co[pos]
+			matrix_pos = co[k]
 			
 		if angle == null:
 			if type_form == 'phalanx':
 				angle = 0
 			else:
-				angle = start_pos.angle_to_point(end_pos)+PI
-		unit.set_pos(start_pos + (matrix_pos).rotated(angle)) 
-		pos += 1
+				angle = start_pos.angle_to_point(end_pos) + PI
+
+		var m = start_pos + (matrix_pos).rotated(angle)
+		targets[unit] = m
+
+		k += 1
 
 func gen_units(n, tex):
 	var units = []
@@ -177,17 +182,23 @@ func psevdoform_draw():
 				if type_form == 'phalanx':
 					angle = 0
 				else:
-					angle = start_pos.angle_to_point(end_pos)+PI
+					angle = start_pos.angle_to_point(end_pos) + PI
 			draw_rect(Rect2(start_pos + (matrix_pos).rotated(angle), PSEVDOFORM_UNIT_SIZE), PSEVDOFORM_COLOR) 
 			pos += 1
 
+func move_units(): 
+	for unit in targets:
+		if unit.get_pos().distance_to(targets[unit]) > 0:
+			unit.translate((targets[unit] - unit.get_global_pos()).normalized())
+			
 func _ready():
 	units = gen_units(COUNT_UNITS, load('unit.png'))
 	set_process(true)
 
 func _process(delta):
 	psevdoform_controller()
-		
+	move_units()
+	
 func _draw():
 	psevdoform_draw()
 
@@ -206,5 +217,8 @@ func _on_wedge_pressed():
 func _on_carre_pressed():
 	type_form = 'carre'
 	PlaceUnits(units, type_form)
-	
+
+#var thread = Thread.new()
+#thread.start(self, "move_units", [m, unit])
+		
 	
